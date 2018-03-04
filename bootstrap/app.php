@@ -19,5 +19,3 @@ require_once __DIR__ . '/../routes/web.php';
 $response = $route->dispatch(
     $container->get('request'), $container->get('response')
 );
-
-$response = $response->respond();
