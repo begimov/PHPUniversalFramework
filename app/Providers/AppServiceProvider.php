@@ -12,7 +12,10 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 class AppServiceProvider extends AbstractServiceProvider
 {
     protected $provides = [
-        //
+        RouteCollection::class,
+        'response',
+        'request',
+        'emitter'
     ];
 
     public function register()
