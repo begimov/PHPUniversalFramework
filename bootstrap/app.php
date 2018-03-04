@@ -12,3 +12,10 @@ try {
 
 require_once __DIR__ . '/container.php';
 
+$route = $container->get(League\Route\RouteCollection::class);
+
+$response = $route->dispatch(
+    $container->get('request'), $container->get('response')
+);
+
+$response = $response->respond();
