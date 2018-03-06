@@ -1,6 +1,3 @@
 <?php
 
-$route->get('/', function ($request, $response) {
-    $response->getBody()->write('/');
-    return $response;
-});
+$route->get('/', 'App\Controllers\HomeController::index')->setName('home');
