@@ -2,13 +2,13 @@
 
 namespace App\Views;
 
-use Twig_Enviroment;
+use Twig_Environment;
 
 class View
 {
     protected $twig;
 
-    public function __construct(Twig_Enviroment $twig)
+    public function __construct(Twig_Environment $twig)
     {
         $this->twig = $twig;
     }
