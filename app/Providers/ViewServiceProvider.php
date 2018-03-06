@@ -4,20 +4,28 @@ namespace App\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
 
+use Twig_Enviroment;
+use Twig_Loader_Filesystem;
+use App\Views\View;
+
 class ViewServiceProvider extends AbstractServiceProvider
 {
     protected $provides = [
-        //
+        View::class
     ];
 
     public function register()
     {
         $container = $this->getContainer();
 
-        $loader = new Twig_Loader_Filesystem(__DIR__ . '/../../views');
+        $container->share(View::class, function() {
+            $loader = new Twig_Loader_Filesystem(__DIR__ . '/../../views');
 
-        $twig = new Twig_Enviroment($loader, [
-            'cache' => false
-        ]);
+            $twig = new Twig_Enviroment($loader, [
+                'cache' => false
+            ]);
+
+            return new View($twig);
+        });
     }
 }
