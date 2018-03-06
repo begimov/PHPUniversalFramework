@@ -3,6 +3,7 @@
 namespace App\Views;
 
 use Twig_Environment;
+use Psr\Http\Message\ResponseInterface;
 
 class View
 {
@@ -13,7 +14,7 @@ class View
         $this->twig = $twig;
     }
 
-    public function render($response, $view, $data = [])
+    public function render(ResponseInterface $response, $view, $data = [])
     {
         $response->getBody()->write(
             $this->twig->render($view, $data)
