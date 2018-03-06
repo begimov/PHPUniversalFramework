@@ -13,5 +13,11 @@ class ViewServiceProvider extends AbstractServiceProvider
     public function register()
     {
         $container = $this->getContainer();
+
+        $loader = new Twig_Loader_Filesystem(__DIR__ . '/../../views');
+
+        $twig = new Twig_Enviroment($loader, [
+            'cache' => false
+        ]);
     }
 }
