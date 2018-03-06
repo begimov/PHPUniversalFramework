@@ -4,14 +4,15 @@ namespace App\Controllers;
 
 class HomeController
 {
+    protected $view;
+
     public function __construct($view)
     {
-        var_dump($view);
+        $this->view = $view;
     }
 
     public function index($request, $response)
     {
-        $response->getBody()->write('/');
-        return $response;
+        return $this->view->render($response);
     }
 }

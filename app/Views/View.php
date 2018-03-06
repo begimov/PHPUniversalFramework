@@ -15,6 +15,7 @@ class View
 
     public function render($response)
     {
-        return $response->getBody()->write('/');
+        $response->getBody()->write('/');
+        return $response;
     }
 }
