@@ -15,6 +15,8 @@ class HomeController
 
     public function index($request, $response)
     {
-        return $this->view->render($response, 'home.twig');
+        return $this->view->render($response, 'home.twig', [
+            'data' => '1'
+        ]);
     }
 }
