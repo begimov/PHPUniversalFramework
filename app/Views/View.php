@@ -13,9 +13,12 @@ class View
         $this->twig = $twig;
     }
 
-    public function render($response)
+    public function render($response, $view, $data = [])
     {
-        $response->getBody()->write('/');
+        $response->getBody()->write(
+            $this->twig->render($view, $data)
+        );
+
         return $response;
     }
 }
