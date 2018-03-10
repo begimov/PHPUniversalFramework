@@ -10,6 +10,13 @@ try {
     //
 }
 
+$loader = new App\Config\Loaders\ArrayLoader([
+    'app' => base_path('config/app.php'),
+    'cache' => base_path('config/cache.php'),
+]);
+var_dump($loader);
+die();
+
 require_once base_path('bootstrap/container.php');
 
 $route = $container->get(League\Route\RouteCollection::class);
