@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'name' => getenv('APP_NAME'),
+    'name' => env('APP_NAME'),
     'version' => [
         'alias' => 'candy',
         'numeric' => [
@@ -9,5 +9,5 @@ return [
             'meta' => 'Updates decription',
         ]
     ],
-    'debug' => getenv('DEBUG')
+    'debug' => env('APP_DEBUG', false)
 ];
