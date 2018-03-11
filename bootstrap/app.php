@@ -18,6 +18,10 @@ $config->load([
     ])
 ]);
 
+dump($config->get('app.version.numeric.ver'));
+dump($config->get('app.name'));
+dump($config->get(''));
+
 dump($config);
 
 die();
