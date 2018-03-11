@@ -1,7 +1,10 @@
 <?php
 
-use App\Providers\AppServiceProvider;
-use App\Providers\ViewServiceProvider;
+use App\Providers\{
+    AppServiceProvider,
+    ViewServiceProvider,
+    ConfigServiceProvider
+};
 
 $container = new League\Container\Container;
 
@@ -11,3 +14,4 @@ $container->delegate(
 
 $container->addServiceProvider(new AppServiceProvider());
 $container->addServiceProvider(new ViewServiceProvider());
+$container->addServiceProvider(new ConfigServiceProvider());
