@@ -10,11 +10,16 @@ try {
     //
 }
 
-$loader = new App\Config\Loaders\ArrayLoader([
+$config = new App\Config\Config();
+$config->load([
+    new App\Config\Loaders\ArrayLoader([
     'app' => base_path('config/app.php'),
     'cache' => base_path('config/cache.php'),
+    ])
 ]);
-dump($loader->parse());
+
+dump($config);
+
 die();
 
 require_once base_path('bootstrap/container.php');

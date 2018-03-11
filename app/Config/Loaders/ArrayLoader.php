@@ -22,7 +22,6 @@ class ArrayLoader implements ILoader
                 //
             }
         }
-
         return $parsed;
     }
 }
