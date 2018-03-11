@@ -7,6 +7,7 @@ use App\Config\Loaders\ILoader;
 class Config
 {
     protected $config = [];
+    protected $cache = [];
 
     public function load(array $loaders)
     {
@@ -18,10 +19,18 @@ class Config
         return $this;
     }
 
-    public function get($key)
+    public function get($key, $default = null)
     {
-        $keys = explode('.', $key);
-        return $this->getConfigProp($this->config, $keys);
+        if ($this->existsInCache($key)) {
+            return $this->getFromCache($key);
+        }
+
+        $this->addToCache(
+            $key, 
+            $propValue = $this->getConfigProp($this->config, explode('.', $key))
+        );
+
+        return $propValue ?? $default;
     }
 
     protected function getConfigProp($config, $keys)
@@ -36,6 +45,21 @@ class Config
             return $this->getConfigProp($config[$key], $keys);
         }
 
-        return false;
+        return;
+    }
+
+    protected function existsInCache($key)
+    {
+        return isset($this->cache[$key]);
+    }
+
+    protected function getFromCache($key)
+    {
+        return $this->cache[$key];
+    }
+
+    protected function addToCache($key, $value)
+    {
+        $this->cache[$key] = $value;
     }
 }
