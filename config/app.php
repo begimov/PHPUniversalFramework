@@ -9,4 +9,5 @@ return [
             'meta' => 'Updates decription',
         ]
     ],
+    'debug' => getenv('DEBUG')
 ];
