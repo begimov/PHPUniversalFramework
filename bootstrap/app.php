@@ -12,6 +12,8 @@ try {
 
 require_once base_path('bootstrap/container.php');
 
+var_dump($container->get('config'));
+
 $route = $container->get(League\Route\RouteCollection::class);
 
 require_once base_path('routes/web.php');
