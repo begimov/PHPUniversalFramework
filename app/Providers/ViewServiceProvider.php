@@ -29,7 +29,9 @@ class ViewServiceProvider extends AbstractServiceProvider
                 'debug' => $config->get('app.debug'),
             ]);
 
-            $twig->addExtension(new Twig_Extension_Debug);
+            if ($config->get('app.debug')) {
+                $twig->addExtension(new Twig_Extension_Debug);
+            }
 
             return new View($twig);
         });
