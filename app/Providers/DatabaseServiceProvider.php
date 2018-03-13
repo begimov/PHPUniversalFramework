@@ -18,7 +18,7 @@ class DatabaseServiceProvider extends AbstractServiceProvider
 
         $config = $container->get('config');
 
-        $container->share('db', function () use ($config) {
+        $container->share(EntityManager::class, function () use ($config) {
             $emConfig = $config->get('db.' . env('DB_CONNECTION'));
 
             $entityManager = EntityManager::create(
