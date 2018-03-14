@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Auth;
 
 use App\Views\View;
 
-class HomeController
+class LoginController
 {
     protected $view;
 
