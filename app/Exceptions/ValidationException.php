@@ -9,4 +9,19 @@ class ValidationException extends \Exception
         $this->request = $request;
         $this->errors = $errors;
     }
+
+    public function getPath()
+    {
+        return $this->request->getUri()->getPath();
+    }
+
+    public function getOldInput()
+    {
+        return $this->request->getParsedBody();
+    }
+
+    public function getErrors()
+    {
+        return $this->errors;
+    }
 }
