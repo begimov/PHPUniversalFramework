@@ -20,6 +20,6 @@ class LoginController
 
     public function login()
     {
-        # code...
+        dump('dfdfdf');
     }
 }
