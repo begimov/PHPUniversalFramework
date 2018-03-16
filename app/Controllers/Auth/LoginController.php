@@ -17,4 +17,9 @@ class LoginController
     {
         return $this->view->render($response, 'auth/login.twig');
     }
+
+    public function login()
+    {
+        # code...
+    }
 }
