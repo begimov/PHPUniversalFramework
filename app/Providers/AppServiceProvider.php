@@ -29,9 +29,9 @@ class AppServiceProvider extends AbstractServiceProvider
         $container->share('response', Response::class);
 
         $container->share('request', function () {
-            return ServerRequestFactory::fromGlobals([
+            return ServerRequestFactory::fromGlobals(
                 $_SERVER, $_GET, $_POST, $_COOKIE, $_FILES
-            ]);
+            );
         });
 
         $container->share('emitter', SapiEmitter::class);
