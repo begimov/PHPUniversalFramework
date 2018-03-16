@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Valitron\Validator;
+use App\Exceptions\ValidationException;
 
 abstract class Controller
 {
@@ -13,8 +14,7 @@ abstract class Controller
         $validator->mapFieldsRules($rules);
 
         if (!$validator->validate()) {
-            dump('failed');
-            die();
+            throw new ValidationException();
         }
 
         return $request->getParsedBody();
