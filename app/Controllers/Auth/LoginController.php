@@ -3,8 +3,9 @@
 namespace App\Controllers\Auth;
 
 use App\Views\View;
+use App\Controllers\Controller;
 
-class LoginController
+class LoginController extends Controller
 {
     protected $view;
 
@@ -18,8 +19,11 @@ class LoginController
         return $this->view->render($response, 'auth/login.twig');
     }
 
-    public function login()
+    public function login($request, $response)
     {
-        //s
+        $this->validate($request, [
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
     }
 }
