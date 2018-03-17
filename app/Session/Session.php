@@ -6,7 +6,10 @@ class Session implements ISession
 {
     public function get($key, $default = null)
     {
-        //
+        if ($this->exists($key)) {
+            return $_SESSION[$key];
+        }
+        return $default;
     }
 
     public function set($key, $value = null)

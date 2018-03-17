@@ -12,14 +12,6 @@ try {
 
 require_once base_path('bootstrap/container.php');
 
-$session = $container->get(App\Session\ISession::class);
-$session->set('name', 'gb');
-$session->set(['key1' => 'v1', 'key2' => 2]);
-dump($_SESSION);
-$session->clear('name', 'key2');
-dump($_SESSION);
-dump($session->exists('key1'));
-
 $route = $container->get(League\Route\RouteCollection::class);
 
 require_once base_path('routes/web.php');
