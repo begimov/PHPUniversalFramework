@@ -21,5 +21,8 @@ try {
         $container->get('request'), $container->get('response')
     );
 } catch (\Exception $e) {
-    $response = (new App\Exceptions\Handler($e))->respond();
+    $response = (new App\Exceptions\Handler(
+            $e,
+            $container->get(App\Session\ISession::class)
+        ))->respond();
 }

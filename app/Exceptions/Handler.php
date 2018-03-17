@@ -2,13 +2,17 @@
 
 namespace App\Exceptions;
 
+use App\Session\ISession;
+
 class Handler
 {
     protected $exception;
+    protected $session;
 
-    public function __construct(\Exception $exception)
+    public function __construct(\Exception $exception, ISession $session)
     {
         $this->exception = $exception;
+        $this->session = $session;
     }
 
     public function respond()
@@ -30,6 +34,11 @@ class Handler
 
     protected function handleValidationException()
     {
+        $this->session->set([
+            'errors' => $this->exception->getErrors(),
+            'oldInput' => $this->exception->getOldInput(),
+        ]);
+
         return redirect($this->exception->getPath());
     }
 }
