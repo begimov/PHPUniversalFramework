@@ -18,6 +18,7 @@ $session->set(['key1' => 'v1', 'key2' => 2]);
 dump($_SESSION);
 $session->clear('name', 'key2');
 dump($_SESSION);
+dump($session->exists('key1'));
 
 $route = $container->get(League\Route\RouteCollection::class);
 

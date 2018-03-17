@@ -22,7 +22,7 @@ class Session implements ISession
 
     public function exists($key)
     {
-        //
+        return isset($_SESSION[$key]) && !empty($_SESSION[$key]);
     }
 
     public function clear(...$key)
