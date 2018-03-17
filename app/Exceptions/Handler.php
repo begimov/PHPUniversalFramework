@@ -30,6 +30,6 @@ class Handler
 
     protected function handleValidationException()
     {
-        return new \Zend\Diactoros\Response\RedirectResponse('/auth/login');
+        return redirect($this->exception->getPath());
     }
 }
