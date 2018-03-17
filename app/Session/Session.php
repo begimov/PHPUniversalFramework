@@ -27,6 +27,8 @@ class Session implements ISession
 
     public function clear(...$key)
     {
-        //
+        foreach ($key as $skey) {
+            unset($_SESSION[$skey]);
+        }
     }
 }
