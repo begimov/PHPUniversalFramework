@@ -13,6 +13,15 @@ class Handler
 
     public function respond()
     {
-        dump($this->exception);
+        $class = (new \ReflectionClass($this->exception))->getShortName();
+
+        if (method_exists($this, $method = 'handle' . $class)) {
+            return $this->$method();
+        }
+    }
+
+    protected function handleValidationException()
+    {
+        dump('CALLED');
     }
 }
