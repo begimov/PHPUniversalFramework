@@ -18,6 +18,14 @@ class Handler
         if (method_exists($this, $method = 'handle' . $class)) {
             return $this->$method();
         }
+
+        return $this->unhandledException();
+    }
+
+    protected function unhandledException()
+    {
+        throw $this->exception;
+        
     }
 
     protected function handleValidationException()
