@@ -5,7 +5,7 @@ namespace App\Views\Extensions;
 class PathExtension extends \Twig_Extension
 {
     protected $router;
-    
+
     public function __construct(\League\Route\RouteCollection $router)
     {
         $this->router = $router;
@@ -20,6 +20,6 @@ class PathExtension extends \Twig_Extension
 
     public function route($name)
     {
-        return '1';
+        return $this->router->getNamedRoute($name)->getPath();
     }
 }
