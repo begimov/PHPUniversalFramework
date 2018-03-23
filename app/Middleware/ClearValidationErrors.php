@@ -15,6 +15,10 @@ class ClearValidationErrors
 
     public function __invoke($request, $response, callable $next)
     {
-        return $next($request, $response);
+        $next = $next($request, $response);
+
+        $this->session->clear('errors', 'oldInput');
+
+        return $next;
     }
 }
