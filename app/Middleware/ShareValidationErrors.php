@@ -15,6 +15,10 @@ class ShareValidationErrors
 
     public function __invoke($request, $response, callable $next)
     {
+        $this->view->share([
+            'errors' => 'errors',
+            'oldInput' => 'oldInput',
+        ]);
         return $next($request, $response);
     }
 }
