@@ -3,10 +3,11 @@
 namespace App\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use League\Container\ServiceProvider\BootableServiceProviderInterface;
 
 use App\Views\View;
 
-class ViewShareServiceProvider extends AbstractServiceProvider
+class ViewShareServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface
 {
     public function boot()
     {
