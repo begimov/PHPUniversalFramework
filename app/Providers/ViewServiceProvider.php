@@ -22,7 +22,9 @@ class ViewServiceProvider extends AbstractServiceProvider
 
         $config = $container->get('config');
 
-        $container->share(View::class, function() use ($config) {
+        $router = $container->get(\League\Route\RouteCollection::class);
+
+        $container->share(View::class, function() use ($config, $router) {
             $loader = new Twig_Loader_Filesystem(base_path('views'));
 
             $twig = new Twig_Environment($loader, [
@@ -34,7 +36,7 @@ class ViewServiceProvider extends AbstractServiceProvider
                 $twig->addExtension(new Twig_Extension_Debug);
             }
 
-            $twig->addExtension(new PathExtension);
+            $twig->addExtension(new PathExtension($router));
 
             return new View($twig);
         });
