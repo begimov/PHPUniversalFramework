@@ -8,6 +8,7 @@ use Twig_Environment;
 use Twig_Loader_Filesystem;
 use Twig_Extension_Debug;
 use App\Views\View;
+use App\Views\Extensions\PathExtension;
 
 class ViewServiceProvider extends AbstractServiceProvider
 {
@@ -32,6 +33,8 @@ class ViewServiceProvider extends AbstractServiceProvider
             if ($config->get('app.debug')) {
                 $twig->addExtension(new Twig_Extension_Debug);
             }
+
+            $twig->addExtension(new PathExtension);
 
             return new View($twig);
         });
