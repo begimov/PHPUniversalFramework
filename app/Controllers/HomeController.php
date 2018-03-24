@@ -19,6 +19,8 @@ class HomeController
     public function index($request, $response)
     {
         dump($this->hasher->create('dfsdfs'));
+        dump($this->hasher->check('dfsdfs1', $this->hasher->create('dfsdfs')));
+
         return $this->view->render($response, 'home.twig');
     }
 }

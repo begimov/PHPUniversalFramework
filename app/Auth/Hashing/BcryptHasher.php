@@ -11,7 +11,7 @@ class BcryptHasher implements IHasher
 
     public function check($plainPassword, $hash)
     {
-        //
+        return password_verify($plainPassword, $hash);
     }
 
     public function needsToBeRehashed($hash)
