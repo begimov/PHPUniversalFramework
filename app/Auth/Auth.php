@@ -23,6 +23,11 @@ class Auth
         }
     }
 
+    protected function hasValidCredentials($user, $password)
+    {
+        //
+    }
+
     public function getUserByEmail($email)
     {
         return $this->db->getRepository(User::class)->findOneBy([
