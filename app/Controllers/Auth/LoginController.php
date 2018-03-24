@@ -24,11 +24,11 @@ class LoginController extends Controller
 
     public function login($request, $response)
     {
-        $this->validate($request, [
+        $data = $this->validate($request, [
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        $this->auth->attempt();
+        $this->auth->attempt($data['email'], $data['password']);
     }
 }
