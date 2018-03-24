@@ -10,7 +10,6 @@ class BcryptHasher implements IHasher
 
         if (!$hash) {
             throw new RuntimeException("Hash algorithm is not supported.");
-            
         }
 
         return $hash;
@@ -23,7 +22,7 @@ class BcryptHasher implements IHasher
 
     public function needsToBeRehashed($hash)
     {
-        //
+        return password_needs_rehash($hash, PASSWORD_BCRYPT, $this->options());
     }
 
     protected function options()
