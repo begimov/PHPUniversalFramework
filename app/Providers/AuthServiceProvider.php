@@ -17,7 +17,9 @@ class AuthServiceProvider extends AbstractServiceProvider
         $container = $this->getContainer();
 
         $container->share(Auth::class, function () use ($container) {
-            return new Auth();
+            return new Auth(
+                $container->get(\Doctrine\ORM\EntityManager::class)
+            );
         });
     }
 }

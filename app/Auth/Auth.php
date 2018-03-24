@@ -2,11 +2,24 @@
 
 namespace App\Auth;
 
+use Doctrine\ORM\EntityManager;
+
 class Auth
 {
-    public function attempt()
+    protected $db;
+
+    public function __construct(EntityManager $db)
     {
-        dump('WORKS');
-        die();
+        $this->db = $db;
+    }
+
+    public function attempt($email, $password)
+    {
+        //
+    }
+
+    public function getUserByEmail($email)
+    {
+        //
     }
 }
