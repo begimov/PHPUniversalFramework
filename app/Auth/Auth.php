@@ -3,6 +3,7 @@
 namespace App\Auth;
 
 use Doctrine\ORM\EntityManager;
+use App\Models\User;
 
 class Auth
 {
@@ -15,11 +16,17 @@ class Auth
 
     public function attempt($email, $password)
     {
-        //
+        $user = $this->getUserByEmail($email);
+
+        if (!$user) {
+            return false;
+        }
     }
 
     public function getUserByEmail($email)
     {
-        //
+        return $this->db->getRepository(User::class)->findOneBy([
+            'email' => $email
+        ]);
     }
 }
