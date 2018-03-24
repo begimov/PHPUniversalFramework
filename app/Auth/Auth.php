@@ -21,14 +21,14 @@ class Auth
     {
         $user = $this->getUserByEmail($email);
 
-        if (!$user) {
+        if (!$user || !$this->hasValidCredentials($user, $password)) {
             return false;
         }
     }
 
     protected function hasValidCredentials($user, $password)
     {
-        //
+        return $this->hasher->check($password, $user->password);
     }
 
     public function getUserByEmail($email)
