@@ -6,7 +6,14 @@ class BcryptHasher implements IHasher
 {
     public function create($plainPassword)
     {
-        return password_hash($plainPassword, PASSWORD_BCRYPT, $this->options());
+        $hash = password_hash($plainPassword, PASSWORD_BCRYPT, $this->options());
+
+        if (!$hash) {
+            throw new RuntimeException("Hash algorithm is not supported.");
+            
+        }
+
+        return $hash;
     }
 
     public function check($plainPassword, $hash)
