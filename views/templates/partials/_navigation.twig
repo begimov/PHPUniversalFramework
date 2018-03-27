@@ -5,8 +5,29 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="{{ route('auth.login') }}">Sign in</a>
+      <li class="nav-item">
+        <a class="nav-item nav-link" href="{{ route('home') }}">Home</a>
+      </li>
+      {% if auth.check %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ auth.user.name }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" href="#">Log out</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-item nav-link" href="{{ route('auth.login') }}">Sign in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link" href="#">Sign up</a>
+      </li>
+      {% endif %}
     </div>
   </div>
 </nav>
