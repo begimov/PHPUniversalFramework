@@ -28,7 +28,14 @@ class Auth
             return false;
         }
 
+        $this->setUserSession($user);
+
         return true;
+    }
+
+    protected function setUserSession($user)
+    {
+        $this->session->set('id', $user->id);
     }
 
     protected function hasValidCredentials($user, $password)
