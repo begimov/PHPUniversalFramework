@@ -39,9 +39,19 @@ class Auth
         return $this->user;
     }
 
+    public function hasUserInSession()
+    {
+        return $this->session->exists($this->key());
+    }
+
+    protected function key()
+    {
+        return 'id';
+    }
+
     protected function setUserSession($user)
     {
-        $this->session->set('id', $user->id);
+        $this->session->set($this->key(), $user->id);
     }
 
     protected function hasValidCredentials($user, $password)
