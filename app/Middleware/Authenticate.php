@@ -15,7 +15,13 @@ class Authenticate
 
     public function __invoke($request, $response, callable $next)
     {
-        //
+        if ($this->auth->hasUserInSession()) {
+            try {
+                $this->auth->setUserFromSession();
+            } catch (\Exception $e) {
+                // $this->auth->logout();
+            }
+        }
         return $next($request, $response);
     }
 }
