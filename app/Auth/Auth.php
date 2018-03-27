@@ -12,6 +12,7 @@ class Auth
     protected $db;
     protected $hasher;
     protected $session;
+    protected $user;
 
     public function __construct(EntityManager $db, IHasher $hasher, ISession $session)
     {
@@ -31,6 +32,11 @@ class Auth
         $this->setUserSession($user);
 
         return true;
+    }
+
+    public function user()
+    {
+        return $this->user;
     }
 
     protected function setUserSession($user)
