@@ -44,6 +44,16 @@ class Auth
         return $this->session->exists($this->key());
     }
 
+    public function setUserFromSession()
+    {
+        $user = $this->getById($this->session->get($this->key()));
+
+        if (!$user) {
+            throw new \Exception();
+        }
+        $this->user = $user;
+    }
+
     protected function key()
     {
         return 'id';
@@ -64,5 +74,10 @@ class Auth
         return $this->db->getRepository(User::class)->findOneBy([
             'email' => $email
         ]);
+    }
+
+    protected function getById($id)
+    {
+        return $this->db->getRepository(User::class)->find($id);
     }
 }
