@@ -24,6 +24,8 @@ class Auth
         if (!$user || !$this->hasValidCredentials($user, $password)) {
             return false;
         }
+        
+        return true;
     }
 
     protected function hasValidCredentials($user, $password)
