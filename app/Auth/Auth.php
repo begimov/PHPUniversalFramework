@@ -5,16 +5,19 @@ namespace App\Auth;
 use Doctrine\ORM\EntityManager;
 use App\Models\User;
 use App\Auth\Hashing\IHasher;
+use App\Session\ISession;
 
 class Auth
 {
     protected $db;
     protected $hasher;
+    protected $session;
 
-    public function __construct(EntityManager $db, IHasher $hasher)
+    public function __construct(EntityManager $db, IHasher $hasher, ISession $session)
     {
         $this->db = $db;
         $this->hasher = $hasher;
+        $this->session = $session;
     }
 
     public function attempt($email, $password)
@@ -24,7 +27,7 @@ class Auth
         if (!$user || !$this->hasValidCredentials($user, $password)) {
             return false;
         }
-        
+
         return true;
     }
 
