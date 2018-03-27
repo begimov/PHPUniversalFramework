@@ -5,16 +5,19 @@ namespace App\Controllers\Auth;
 use App\Views\View;
 use App\Auth\Auth;
 use App\Controllers\Controller;
+use League\Route\RouteCollection;
 
 class LoginController extends Controller
 {
     protected $view;
     protected $auth;
+    protected $router;
 
-    public function __construct(View $view, Auth $auth)
+    public function __construct(View $view, Auth $auth, RouteCollection $router)
     {
         $this->view = $view;
         $this->auth = $auth;
+        $this->router = $router;
     }
 
     public function index($request, $response)
@@ -29,6 +32,13 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        $this->auth->attempt($data['email'], $data['password']);
+        $attempt = $this->auth->attempt($data['email'], $data['password']);
+
+        if (!$attempt) {
+            dump('failed');
+            die();
+        }
+
+        return redirect($this->router->getNamedRoute('home')->getPath());
     }
 }
