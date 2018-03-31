@@ -97,7 +97,10 @@ class Auth
 
     protected function rehashPassword($user, $password)
     {
-        dump('REHASH');
-        $hash = $this->hasher->create($password);
+        $this->db->getRepository(User::class)->find($user->id)->update([
+            'password' => $this->hasher->create($password)
+        ]);
+
+        $this->db->flush();
     }
 }
