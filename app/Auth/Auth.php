@@ -29,6 +29,10 @@ class Auth
             return false;
         }
 
+        if ($this->needsRehash($user)) {
+            $this->rehashPassword($user, $password);
+        }
+
         $this->setUserSession($user);
 
         return true;
@@ -84,5 +88,16 @@ class Auth
     protected function getById($id)
     {
         return $this->db->getRepository(User::class)->find($id);
+    }
+
+    protected function needsRehash($user)
+    {
+        return $this->hasher->needsToBeRehashed($user->password);
+    }
+
+    protected function rehashPassword($user, $password)
+    {
+        dump('REHASH');
+        $hash = $this->hasher->create($password);
     }
 }
