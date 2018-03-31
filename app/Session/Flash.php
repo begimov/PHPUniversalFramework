@@ -7,6 +7,7 @@ use App\Session\ISession;
 class Flash
 {
     protected $session;
+    protected $messages;
     
     public function __construct(ISession $session)
     {
@@ -26,7 +27,19 @@ class Flash
         ));
     }
 
-    public function getAll()
+    public function get($key)
+    {
+        if ($this->has($key)) {
+            return $this->messages[$key];
+        }
+    }
+
+    public function has($key)
+    {
+        return isset($this->messages[$key]);
+    }
+
+    protected function getAll()
     {
         return $this->session->get('flash');
     }
