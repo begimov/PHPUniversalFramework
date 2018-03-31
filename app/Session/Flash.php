@@ -19,7 +19,7 @@ class Flash
             $this->session->get('flash') ?? [], [
                 $key => $value
             ]
-        );
+        ));
     }
 
     public function getAll()
