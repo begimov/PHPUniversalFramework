@@ -11,6 +11,10 @@ class Flash
     public function __construct(ISession $session)
     {
         $this->session = $session;
+
+        $this->addFlashMsgsToCache();
+
+        $this->clear();
     }
 
     public function now($key, $value)
@@ -30,5 +34,10 @@ class Flash
     protected function addFlashMsgsToCache(Type $var = null)
     {
         $this->messages = $this->getAll();
+    }
+
+    protected function clear()
+    {
+        $this->session->clear('flash');
     }
 }
