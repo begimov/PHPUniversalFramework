@@ -35,8 +35,8 @@ class LoginController extends Controller
         $attempt = $this->auth->attempt($data['email'], $data['password']);
 
         if (!$attempt) {
-            dump('failed');
-            die();
+            $this->flash->now('error','User email and password dont match.');
+            return redirect($request->getUri()->getPath());
         }
 
         return redirect($this->router->getNamedRoute('home')->getPath());
