@@ -15,6 +15,10 @@ class Flash
 
     public function now($key, $value)
     {
-        # code...
+        $this->session->set('flash', array_merge(
+            $this->session->get('flash') ?? [], [
+                $key => $value
+            ]
+        );
     }
 }
