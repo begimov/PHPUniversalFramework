@@ -21,4 +21,9 @@ class Flash
             ]
         );
     }
+
+    public function getAll()
+    {
+        return $this->session->get('flash');
+    }
 }
