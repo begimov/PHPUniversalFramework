@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Session\Flash;
+use App\Session\ISession;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 
 class FlashServiceProvider extends AbstractServiceProvider
@@ -15,8 +16,8 @@ class FlashServiceProvider extends AbstractServiceProvider
     {
         $container = $this->getContainer();
 
-        $container->share(Flash::class, function () {
-            return new Flash();
+        $container->share(Flash::class, function () use ($container) {
+            return new Flash($container->get(ISession::class));
         });
     }
 }
