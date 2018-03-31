@@ -26,4 +26,9 @@ class Flash
     {
         return $this->session->get('flash');
     }
+
+    protected function addFlashMsgsToCache(Type $var = null)
+    {
+        $this->messages = $this->getAll();
+    }
 }
