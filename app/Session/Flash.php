@@ -12,4 +12,9 @@ class Flash
     {
         $this->session = $session;
     }
+
+    public function now($key, $value)
+    {
+        # code...
+    }
 }
