@@ -4,6 +4,7 @@ namespace App\Controllers\Auth;
 
 use App\Views\View;
 use App\Auth\Auth;
+use App\Session\Flash;
 use App\Controllers\Controller;
 use League\Route\RouteCollection;
 
@@ -12,12 +13,18 @@ class LoginController extends Controller
     protected $view;
     protected $auth;
     protected $router;
+    protected $flash;
 
-    public function __construct(View $view, Auth $auth, RouteCollection $router)
+    public function __construct(
+        View $view, 
+        Auth $auth, 
+        RouteCollection $router,
+        Flash $flash)
     {
         $this->view = $view;
         $this->auth = $auth;
         $this->router = $router;
+        $this->flash = $flash;
     }
 
     public function index($request, $response)
