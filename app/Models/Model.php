@@ -18,4 +18,11 @@ abstract class Model
         }
         return false;
     }
+
+    public function update(array $data)
+    {
+        foreach ($data as $column => $value) {
+            $this->{$column} = $value;
+        }
+    }
 }
