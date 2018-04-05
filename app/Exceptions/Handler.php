@@ -3,16 +3,23 @@
 namespace App\Exceptions;
 
 use App\Session\ISession;
+use App\Views\View;
 
 class Handler
 {
     protected $exception;
     protected $session;
+    protected $view;
 
-    public function __construct(\Exception $exception, ISession $session)
+    public function __construct(
+        \Exception $exception, 
+        ISession $session,
+        View $view
+    )
     {
         $this->exception = $exception;
         $this->session = $session;
+        $this->view = $view;
     }
 
     public function respond()
@@ -40,5 +47,10 @@ class Handler
         ]);
 
         return redirect($this->exception->getPath());
+    }
+
+    protected function handleCsrfTokenException()
+    {
+        //
     }
 }
