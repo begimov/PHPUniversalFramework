@@ -35,10 +35,11 @@ class Csrf
 
     protected function needsToBeGenerated()
     {
-        if ($this->shouldPersist()) {
-            return false;
+        if (!$this->session->exists($this->key())) {
+            return true;
         }
-        return $this->session->exists($this->key());
+
+        return !$this->shouldPersist();
     }
 
     protected function shouldPersist()
