@@ -4,21 +4,25 @@ namespace App\Exceptions;
 
 use App\Session\ISession;
 use App\Views\View;
+use Psr\Http\Message\ResponseInterface;
 
 class Handler
 {
     protected $exception;
     protected $session;
+    protected $response;
     protected $view;
 
     public function __construct(
         \Exception $exception, 
         ISession $session,
+        ResponseInterface $response,
         View $view
     )
     {
         $this->exception = $exception;
         $this->session = $session;
+        $this->response = $response;
         $this->view = $view;
     }
 
@@ -51,6 +55,6 @@ class Handler
 
     protected function handleCsrfTokenException()
     {
-        return $this->view->render('', 'errors/csrf.twig');
+        return $this->view->render($this->response, 'errors/csrf.twig');
     }
 }
