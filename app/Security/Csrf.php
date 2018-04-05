@@ -28,6 +28,11 @@ class Csrf
         return $token;
     }
 
+    public function key()
+    {
+        return '_token';
+    }
+
     protected function getFromSession()
     {
         return $this->session->get($this->key());
@@ -45,10 +50,5 @@ class Csrf
     protected function shouldPersist()
     {
         return $this->persist;
-    }
-
-    protected function key()
-    {
-        return '_token';
     }
 }
