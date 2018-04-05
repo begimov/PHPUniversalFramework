@@ -19,7 +19,9 @@ class VerifyCsrfToken
             return $next($request, $response);
         }
 
-        //
+        if (!$this->csrf->isValid($this->getToken($request))) {
+            throw new \Exception; 
+        }
 
         return $next($request, $response);
     }
