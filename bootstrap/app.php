@@ -25,6 +25,7 @@ try {
 } catch (\Exception $e) {
     $response = (new App\Exceptions\Handler(
             $e,
-            $container->get(App\Session\ISession::class)
+            $container->get(App\Session\ISession::class),
+            $container->get(App\Views\View::class)
         ))->respond();
 }
