@@ -26,6 +26,11 @@ class VerifyCsrfToken
         return $next($request, $response);
     }
 
+    public function getToken($request)
+    {
+        return $request->getParsedBody()[$this->csrf->key()] ?? null;
+    }
+
     protected function isProtectionRequired($request)
     {
         return in_array($request->getMethod(), ['POST', 'PUT', 'DELETE', 'PATCH']);
