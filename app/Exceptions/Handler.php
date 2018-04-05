@@ -51,6 +51,6 @@ class Handler
 
     protected function handleCsrfTokenException()
     {
-        //
+        return $this->view->render('', 'errors/csrf.twig');
     }
 }
