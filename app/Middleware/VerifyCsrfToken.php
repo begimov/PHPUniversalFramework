@@ -15,7 +15,7 @@ class VerifyCsrfToken
 
     public function __invoke($request, $response, callable $next)
     {
-        if (!isProtectionRequired()) {
+        if (!$this->isProtectionRequired($request)) {
             return $next($request, $response);
         }
 
