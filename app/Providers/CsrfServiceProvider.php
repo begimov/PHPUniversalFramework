@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Security\Csrf;
+use App\Session\ISession;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 
 class CsrfServiceProvider extends AbstractServiceProvider
@@ -15,8 +16,10 @@ class CsrfServiceProvider extends AbstractServiceProvider
     {
         $container = $this->getContainer();
 
-        $container->share(Csrf::class, function () {
-            return new Csrf;
+        $container->share(Csrf::class, function () use ($container) {
+            return new Csrf(
+                $container->get(ISession::class)
+            );
         });
     }
 }
