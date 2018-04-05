@@ -2,7 +2,7 @@
 
 namespace App\Middleware;
 
-use App\Session\ISession;
+use App\Security\Csrf;
 
 class VerifyCsrfToken
 {
@@ -15,7 +15,17 @@ class VerifyCsrfToken
 
     public function __invoke($request, $response, callable $next)
     {
+        if (!isProtectionRequired()) {
+            return $next($request, $response);
+        }
+
         //
+
         return $next($request, $response);
+    }
+
+    protected function isProtectionRequired($request)
+    {
+        # code...
     }
 }
