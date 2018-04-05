@@ -3,6 +3,7 @@
 namespace App\Middleware;
 
 use App\Security\Csrf;
+use App\Exceptions\CsrfTokenException;
 
 class VerifyCsrfToken
 {
@@ -20,7 +21,7 @@ class VerifyCsrfToken
         }
 
         if (!$this->csrf->isValid($this->getToken($request))) {
-            throw new \Exception; 
+            throw new CsrfTokenException; 
         }
 
         return $next($request, $response);
