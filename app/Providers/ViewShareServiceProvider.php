@@ -16,7 +16,8 @@ class ViewShareServiceProvider extends AbstractServiceProvider implements Bootab
         $container->get(View::class)->share([
             'config' => $container->get('config'),
             'auth' => $container->get(\App\Auth\Auth::class),
-            'flash' => $container->get(\App\Session\Flash::class)
+            'flash' => $container->get(\App\Session\Flash::class),
+            'csrf' => $container->get(\App\Security\Csrf::class)
         ]);
     }
 

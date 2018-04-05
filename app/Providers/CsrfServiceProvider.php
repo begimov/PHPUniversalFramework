@@ -15,7 +15,7 @@ class CsrfServiceProvider extends AbstractServiceProvider
     {
         $container = $this->getContainer();
 
-        $container->share(Crsf::class, function () {
+        $container->share(Csrf::class, function () {
             return new Csrf;
         });
     }
