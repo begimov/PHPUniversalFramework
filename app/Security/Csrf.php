@@ -13,8 +13,18 @@ class Csrf
         $this->session = $session;
     }
 
-    public function hash()
+    public function token()
     {
-        return 'hash';
+        $this->session->set(
+            $this->key(), 
+            $token = bin2hex(random_bytes(32))
+        );
+
+        return $token;
+    }
+
+    protected function key()
+    {
+        return '_token';
     }
 }
