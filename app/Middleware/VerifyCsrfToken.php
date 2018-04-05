@@ -26,6 +26,6 @@ class VerifyCsrfToken
 
     protected function isProtectionRequired($request)
     {
-        # code...
+        return in_array($request->getMethod(), ['POST', 'PUT', 'DELETE', 'PATCH']);
     }
 }
