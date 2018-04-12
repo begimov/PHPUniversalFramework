@@ -12,9 +12,13 @@ class ExistsRule
     {
         $this->db = $db;
     }
-    
+
     public function validate($column, $value, $params, $columns)
     {
-        return false;
+        $result = $this->db->getRepository($params[0])->findOneBy([
+            $column => $value
+        ]);
+        
+        return $result === null;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Auth;
 
+use App\Models\User;
 use App\Views\View;
 use App\Auth\Auth;
 use App\Session\Flash;
@@ -25,7 +26,7 @@ class RegisterController extends Controller
     public function register($request, $response)
     {
         $data = $this->validate($request, [
-            'email' => ['required', 'email', 'exists'],
+            'email' => ['required', 'email', ['exists', User::class]],
             'name' => ['required'],
             'password' => ['required'],
             'password_confirmation' => ['required', ['equals', 'password']]
