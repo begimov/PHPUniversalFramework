@@ -38,6 +38,11 @@ class Auth
         return true;
     }
 
+    public function logout()
+    {
+        $this->session->clear($this->key());
+    }
+
     public function user()
     {
         return $this->user;
