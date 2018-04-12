@@ -31,5 +31,12 @@ class RegisterController extends Controller
             'password' => ['required'],
             'password_confirmation' => ['required', ['equals', 'password']]
         ]);
+
+        $this->createUser($data);
+    }
+
+    protected function createUser($data)
+    {
+        $user = new User;
     }
 }
