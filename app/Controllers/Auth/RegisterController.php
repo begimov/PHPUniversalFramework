@@ -14,20 +14,27 @@ use Doctrine\ORM\EntityManager;
 class RegisterController extends Controller
 {
     protected $view;
+
     protected $hasher;
+
     protected $router;
+
     protected $db;
+
+    protected $auth;
 
     public function __construct(
         View $view, 
         IHasher $hasher,
         RouteCollection $router,
-        EntityManager $db)
+        EntityManager $db,
+        Auth $auth)
     {
         $this->view = $view;
         $this->hasher = $hasher;
         $this->router = $router;
         $this->db = $db;
+        $this->auth = $auth;
     }
 
     public function index($request, $response)
@@ -45,6 +52,8 @@ class RegisterController extends Controller
         ]);
 
         $user = $this->createUser($data);
+
+        $this->auth->attempt($data['email'], $data['password']);
 
         return redirect($this->router->getNamedRoute('home')->getPath());
     }

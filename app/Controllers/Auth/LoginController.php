@@ -11,8 +11,11 @@ use League\Route\RouteCollection;
 class LoginController extends Controller
 {
     protected $view;
+
     protected $auth;
+
     protected $router;
+    
     protected $flash;
 
     public function __construct(
