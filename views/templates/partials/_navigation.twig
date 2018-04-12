@@ -17,7 +17,7 @@
           {{ auth.user.name }}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Log out</a>
+          <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout').submit();">Log out</a>
         </div>
       </li>
       {% else %}
@@ -31,3 +31,7 @@
     </div>
   </div>
 </nav>
+
+<form action="{{ route('auth.logout') }}" method="POST" style="display: none;" id="logout">
+  <input type="hidden" name="{{ csrf.key }}" value="{{ csrf.token }}">
+</form>
