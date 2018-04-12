@@ -4,7 +4,7 @@ namespace App\Validation\Rules;
 
 use Doctrine\ORM\EntityManager;
 
-class ExistsRule
+class ExistsRule implements IRule
 {
     protected $db;
 
@@ -18,7 +18,7 @@ class ExistsRule
         $result = $this->db->getRepository($params[0])->findOneBy([
             $column => $value
         ]);
-        
+
         return $result === null;
     }
 }
