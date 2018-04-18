@@ -21,7 +21,7 @@ class Auth
         $this->session = $session;
     }
 
-    public function attempt($email, $password)
+    public function attempt($email, $password, $remember = false)
     {
         $user = $this->getUserByEmail($email);
 
@@ -34,6 +34,10 @@ class Auth
         }
 
         $this->setUserSession($user);
+
+        if ($remember) {
+            $this->setRememberToken($user);
+        }
 
         return true;
     }
@@ -71,6 +75,11 @@ class Auth
     protected function key()
     {
         return 'id';
+    }
+
+    protected function setRememberToken($user)
+    {
+        //
     }
 
     protected function setUserSession($user)
