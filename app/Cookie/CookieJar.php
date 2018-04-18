@@ -31,9 +31,9 @@ class CookieJar
         return $default;
     }
 
-    public function exists()
+    public function exists($key)
     {
-        # code...
+        return isset($_COOKIE[$key]) && !empty($_COOKIE[$key]);
     }
 
     public function clear()
