@@ -21,9 +21,9 @@ class Recaller
         return hash('sha256', $token);
     }
 
-    public function splitCookieValue()
+    public function splitCookieValue($value)
     {
-        //
+        return explode($this->separator, $value);
     }
 
     protected function generateIdentifier()
