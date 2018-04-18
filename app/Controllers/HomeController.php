@@ -19,7 +19,7 @@ class HomeController
 
     public function index($request, $response)
     {
-        $this->cookie->clear('name');
+        // $this->cookie->clear('name');
 
         return $this->view->render($response, 'home.twig');
     }

@@ -10,7 +10,7 @@ use App\Session\ISession;
 class Auth
 {
     protected $db;
-    
+
     protected $hasher;
 
     protected $session;
@@ -89,7 +89,7 @@ class Auth
 
     protected function setRememberToken($user)
     {
-        //
+        dump($this->recaller->generate());
     }
 
     protected function setUserSession($user)
