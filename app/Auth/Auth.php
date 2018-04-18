@@ -102,6 +102,10 @@ class Auth
         $user = $this->db->getRepository(User::class)->findOneBy([
             'remember_identifier' => $identifier
         ]);
+
+        // TODO: remove cookie if user not found
+
+        dump($this->recaller->validateToken($token, $user->remember_token));
     }
 
     protected function key()

@@ -26,6 +26,11 @@ class Recaller
         return explode($this->separator, $value);
     }
 
+    public function validateToken($plain, $hash)
+    {
+        return $this->createHash($plain) === $hash;
+    }
+
     protected function generateIdentifier()
     {
         return bin2hex(random_bytes(32));
