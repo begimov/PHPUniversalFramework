@@ -22,7 +22,8 @@ class AuthServiceProvider extends AbstractServiceProvider
                 $container->get(\Doctrine\ORM\EntityManager::class),
                 $container->get(\App\Auth\Hashing\IHasher::class),
                 $container->get(\App\Session\ISession::class),
-                new Recaller()
+                new Recaller(),
+                $container->get(\App\Cookie\CookieJar::class)
             );
         });
     }

@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use App\Models\User;
 use App\Auth\Hashing\IHasher;
 use App\Session\ISession;
+use App\Cookie\CookieJar;
 
 class Auth
 {
@@ -19,16 +20,21 @@ class Auth
 
     protected $recaller;
 
+    protected $cookie;
+
     public function __construct(
         EntityManager $db, 
         IHasher $hasher, 
         ISession $session,
-        Recaller $recaller)
+        Recaller $recaller,
+        CookieJar $cookie
+    )
     {
         $this->db = $db;
         $this->hasher = $hasher;
         $this->session = $session;
         $this->recaller = $recaller;
+        $this->cookie = $cookie;
     }
 
     public function attempt($email, $password, $remember = false)
@@ -89,7 +95,7 @@ class Auth
 
     protected function setRememberToken($user)
     {
-        dump($this->recaller->generate());
+        list($identifier, $token) = $this->recaller->generate();
     }
 
     protected function setUserSession($user)
