@@ -10,15 +10,25 @@ use App\Session\ISession;
 class Auth
 {
     protected $db;
+    
     protected $hasher;
+
     protected $session;
+
     protected $user;
 
-    public function __construct(EntityManager $db, IHasher $hasher, ISession $session)
+    protected $recaller;
+
+    public function __construct(
+        EntityManager $db, 
+        IHasher $hasher, 
+        ISession $session,
+        Recaller $recaller)
     {
         $this->db = $db;
         $this->hasher = $hasher;
         $this->session = $session;
+        $this->recaller = $recaller;
     }
 
     public function attempt($email, $password, $remember = false)
