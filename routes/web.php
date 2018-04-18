@@ -2,6 +2,8 @@
 
 $route->get('/', 'App\Controllers\HomeController::index')->setName('home');
 
+$route->get('/dashboard', 'App\Controllers\DashboardController::index')->setName('dashboard');
+
 $route->group('/auth', function ($route) {
     $route->get('/login', 'App\Controllers\Auth\LoginController::index')->setName('auth.login');
     $route->post('/login', 'App\Controllers\Auth\LoginController::login');
