@@ -15,7 +15,10 @@ class Authenticated
 
     public function __invoke($request, $response, callable $next)
     {
-        $response = redirect('/');
+        if (!$this->auth->check()) {
+            $response = redirect('/');
+        }
+        
         return $next($request, $response);
     }
 }
