@@ -98,6 +98,10 @@ class Auth
         list($identifier, $token) = $this->recaller->splitCookieValue(
             $this->cookie->get('remember')
         );
+
+        $user = $this->db->getRepository(User::class)->findOneBy([
+            'remember_identifier' => $identifier
+        ]);
     }
 
     protected function key()
