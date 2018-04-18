@@ -2,7 +2,9 @@
 
 $route->get('/', 'App\Controllers\HomeController::index')->setName('home');
 
-$route->get('/dashboard', 'App\Controllers\DashboardController::index')->setName('dashboard');
+$route->group('', function ($route) {
+    $route->get('/dashboard', 'App\Controllers\DashboardController::index')->setName('dashboard');
+})->middleware($container->get(App\Middleware\Authenticated::class));
 
 $route->group('/auth', function ($route) {
     $route->get('/login', 'App\Controllers\Auth\LoginController::index')->setName('auth.login');

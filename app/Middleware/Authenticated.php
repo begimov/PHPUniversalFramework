@@ -15,7 +15,7 @@ class Authenticated
 
     public function __invoke($request, $response, callable $next)
     {
-        //
+        $response = redirect('/');
         return $next($request, $response);
     }
 }
