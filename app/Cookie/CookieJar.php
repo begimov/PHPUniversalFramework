@@ -36,9 +36,12 @@ class CookieJar
         return isset($_COOKIE[$key]) && !empty($_COOKIE[$key]);
     }
 
-    public function clear()
+    public function clear($name)
     {
-        # code...
+        $this->set(
+            $name, null, 1, 
+            $this->path, $this->domain, $this->secure, $this->httpOnly
+        );
     
     }
     public function forever()
