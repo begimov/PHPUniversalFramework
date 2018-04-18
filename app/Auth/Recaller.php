@@ -13,4 +13,9 @@ class Recaller
     {
         return bin2hex(random_bytes(32));
     }
+
+    protected function generateToken()
+    {
+        return bin2hex(random_bytes(32));
+    }
 }
