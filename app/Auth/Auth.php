@@ -105,7 +105,10 @@ class Auth
 
         // TODO: remove cookie if user not found
 
-        dump($this->recaller->validateToken($token, $user->remember_token));
+        if (!$this->recaller->validateToken($token, $user->remember_token)) {
+            // TODO: remove remember_identifier & remember_token from db
+            throw new \Exception();
+        }
     }
 
     protected function key()
