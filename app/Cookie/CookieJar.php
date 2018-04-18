@@ -22,9 +22,13 @@ class CookieJar
         );
     }
 
-    public function get()
+    public function get($key, $default = null)
     {
-        # code...
+        if ($this->exists($key)) {
+            return $_COOKIE[$key];
+        }
+
+        return $default;
     }
 
     public function exists()
