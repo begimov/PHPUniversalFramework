@@ -97,7 +97,7 @@ class Auth
     {
         list($identifier, $token) = $this->recaller->generate();
 
-        $this->cookie->set('remember', $this->recaller->generateCookieValue());
+        $this->cookie->set('remember', $this->recaller->generateCookieValue($identifier, $token));
     }
 
     protected function setUserSession($user)
