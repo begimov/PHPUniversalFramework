@@ -4,9 +4,9 @@ namespace App\Cookie;
 
 class CookieJar
 {
-    public function set()
+    public function set($name, $value, $minutes = 60)
     {
-        # code...
+        //
     }
 
     public function get()
