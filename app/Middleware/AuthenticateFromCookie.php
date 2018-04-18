@@ -20,7 +20,11 @@ class AuthenticateFromCookie
         }
 
         if ($this->auth->hasRecaller()) {
-            //
+            try {
+                $this->setUserFromCookie();
+            } catch (\Exception $e) {
+                $this->auth->logout();
+            }
         }
 
         return $next($request, $response);
