@@ -98,6 +98,13 @@ class Auth
         list($identifier, $token) = $this->recaller->generate();
 
         $this->cookie->set('remember', $this->recaller->generateCookieValue($identifier, $token));
+
+        $this->db->getRepository(User::class)->find($user->id)->update([
+            'remember_identifier' => $identifier,
+            'remember_token' => $this->recaller->hashTokenForDB($token)
+        ]);
+
+        $this->db->flush();
     }
 
     protected function setUserSession($user)
