@@ -21,6 +21,11 @@ class Recaller
         return hash('sha256', $token);
     }
 
+    public function splitCookieValue()
+    {
+        //
+    }
+
     protected function generateIdentifier()
     {
         return bin2hex(random_bytes(32));

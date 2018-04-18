@@ -93,6 +93,11 @@ class Auth
         return $this->cookie->exists('remember');
     }
 
+    public function setUserFromCookie()
+    {
+        //
+    }
+
     protected function key()
     {
         return 'id';
