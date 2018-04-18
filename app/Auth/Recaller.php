@@ -6,7 +6,7 @@ class Recaller
 {
     public function generate()
     {
-        dump($this->generateIdentifier());
+        return [$this->generateIdentifier(), $this->generateToken()];
     }
 
     protected function generateIdentifier()
