@@ -95,7 +95,9 @@ class Auth
 
     public function setUserFromCookie()
     {
-        //
+        list($identifier, $token) = $this->recaller->splitCookieValue(
+            $this->cookie->get('remember')
+        );
     }
 
     protected function key()
