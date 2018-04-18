@@ -88,6 +88,11 @@ class Auth
         $this->user = $user;
     }
 
+    public function hasRecaller()
+    {
+        return $this->cookie->exists('remember');
+    }
+
     protected function key()
     {
         return 'id';
