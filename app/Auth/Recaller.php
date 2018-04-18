@@ -16,6 +16,11 @@ class Recaller
         return $identifier . $this->separator . $token;
     }
 
+    public function createHash($token)
+    {
+        return hash('sha256', $token);
+    }
+
     protected function generateIdentifier()
     {
         return bin2hex(random_bytes(32));

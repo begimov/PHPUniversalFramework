@@ -101,7 +101,7 @@ class Auth
 
         $this->db->getRepository(User::class)->find($user->id)->update([
             'remember_identifier' => $identifier,
-            'remember_token' => $this->recaller->hashTokenForDB($token)
+            'remember_token' => $this->recaller->createHash($token)
         ]);
 
         $this->db->flush();
