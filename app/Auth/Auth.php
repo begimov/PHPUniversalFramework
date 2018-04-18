@@ -109,6 +109,8 @@ class Auth
             // TODO: remove remember_identifier & remember_token from db
             throw new \Exception();
         }
+
+        $this->setUserSession($user);
     }
 
     protected function key()
